@@ -1,0 +1,861 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Panchabarna — Desktop Home</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+<script>
+(function(){
+  var root = document.documentElement;
+  function fit(){ root.style.setProperty('--fit', root.clientWidth / 1440); }
+  fit();
+  window.addEventListener('resize', fit);
+})();
+</script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&amp;family=Hind+Siliguri:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F5F1EA}
+a{color:#1C1916}a:hover{color:#A6261C}
+.t{font-family:'Hind Siliguri','Segoe UI',sans-serif;color:#1C1916;background:#F5F1EA;width:1440px;zoom:var(--fit,1);position:relative;overflow:hidden;--ink:#1C1916;--paper:#F5F1EA;--tur:#E3A72F;--ind:#1D2440}
+.t *{box-sizing:border-box}
+.d{font-family:'Bricolage Grotesque','Hind Siliguri',sans-serif;letter-spacing:-.02em}
+.m{font-family:'IBM Plex Mono',ui-monospace,monospace;letter-spacing:.04em;text-transform:uppercase}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+button{font:inherit;color:inherit}
+
+/* header */
+.ib{cursor:pointer;background:none;border:0;min-width:44px;min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:14px;font-weight:500;text-decoration:none;color:#1C1916}
+.ib:hover{color:var(--acc)}
+.cnt{display:inline-flex;min-width:20px;height:20px;padding:0 5px;border-radius:10px;align-items:center;justify-content:center;background:var(--acc);color:#fff;font-size:11px;font-family:'IBM Plex Mono',monospace}
+.search{display:flex;align-items:center;gap:10px;border:1px solid rgba(28,25,22,.25);border-radius:999px;height:46px;padding:0 18px;width:340px;transition:border-color .3s,width .5s cubic-bezier(.2,.8,.1,1)}
+.search:focus-within{border-color:var(--ink);width:400px}
+.search input{border:0;background:transparent;font:inherit;font-size:15px;width:100%;outline:none;color:#1C1916}
+.navi{position:static}
+.navi > a{display:flex;align-items:center;height:52px;padding:0 18px;text-decoration:none;font-weight:500;font-size:15px;position:relative}
+.navi > a::after{content:"";position:absolute;left:18px;right:18px;bottom:10px;height:2px;background:var(--acc);transform:scaleX(0);transition:transform .35s cubic-bezier(.7,0,.2,1);transform-origin:left}
+.navi:hover > a::after,.navi:focus-within > a::after{transform:scaleX(1)}
+.mega{position:absolute;left:0;right:0;top:100%;background:#FBF8F3;border-top:1px solid rgba(28,25,22,.12);border-bottom:1px solid rgba(28,25,22,.12);z-index:25;visibility:hidden;opacity:0;clip-path:inset(0 0 100% 0);transition:clip-path .5s cubic-bezier(.7,0,.2,1),opacity .2s,visibility 0s .5s}
+.navi:hover .mega,.navi:focus-within .mega{visibility:visible;opacity:1;clip-path:inset(0 0 0 0);transition:clip-path .55s cubic-bezier(.2,.8,.1,1),opacity .2s,visibility 0s}
+.mega a{text-decoration:none;font-size:15px;display:inline-block;padding:5px 0;transition:transform .25s,color .25s}
+.mega a:hover{transform:translateX(6px)}
+.navi:hover .mcol,.navi:focus-within .mcol{animation:up .6s cubic-bezier(.2,.8,.1,1) both}
+
+/* ticker */
+.tk{display:flex;width:max-content;animation:tk 40s linear infinite}
+.tk span{padding:0 28px;white-space:nowrap}
+@keyframes tk{to{transform:translateX(-50%)}}
+
+/* hero */
+.hero{position:relative;height:640px;overflow:hidden;transition:background-color 1s cubic-bezier(.6,0,.2,1);color:#F5F1EA}
+.slide{position:absolute;inset:0;visibility:hidden}
+.slide.on{visibility:visible}
+.slide .ln{display:block;overflow:hidden}
+.slide .ln > span{display:block;transform:translateY(110%)}
+.slide.on .ln > span{animation:rise 1s cubic-bezier(.2,.8,.1,1) both}
+.slide .fu{opacity:0}
+.slide.on .fu{animation:up .9s cubic-bezier(.2,.8,.1,1) both}
+.slide .bn{opacity:0}
+.slide.on .bn{animation:bn 1.6s cubic-bezier(.2,.8,.1,1) both,drift 18s linear 1.6s infinite alternate}
+.slide .art{opacity:0}
+.slide.on .art{animation:art 1.2s cubic-bezier(.2,.8,.1,1) .1s both}
+.slide.on .kb{animation:kb 8s ease-out both}
+@keyframes rise{from{transform:translateY(110%) rotate(3deg)}to{transform:none}}
+@keyframes up{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes bn{from{opacity:0;transform:translateX(120px)}to{opacity:1;transform:none}}
+@keyframes drift{to{transform:translateX(-80px)}}
+@keyframes art{from{opacity:0;transform:scale(.85) rotate(-6deg)}to{opacity:1;transform:none}}
+@keyframes kb{from{transform:scale(1.18)}to{transform:scale(1)}}
+.spin{animation:spin 30s linear infinite;transform-origin:center;transform-box:fill-box}
+.spinr{animation:spin 50s linear infinite reverse;transform-origin:center;transform-box:fill-box}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hb{cursor:pointer;min-height:54px;padding:0 28px;border:0;border-radius:999px;background:#F5F1EA;color:#1C1916;font-weight:600;font-size:15px;display:inline-flex;align-items:center;gap:12px;text-decoration:none;position:relative;overflow:hidden;transition:color .35s}
+.hb::before{content:"";position:absolute;inset:0;background:var(--tur);border-radius:inherit;transform:scale(0,1);transform-origin:left;transition:transform .45s cubic-bezier(.7,0,.2,1)}
+.hb:hover{color:#1C1916}.hb:hover::before{transform:scale(1,1)}
+.hb > *{position:relative}
+.hb .ar{transition:transform .35s}.hb:hover .ar{transform:translateX(5px)}
+.ghost{background:transparent;color:#F5F1EA;box-shadow:inset 0 0 0 1.5px rgba(245,241,234,.7)}
+.prog{cursor:pointer;background:none;border:0;padding:14px 0 0;width:180px;text-align:left;color:rgba(245,241,234,.75);display:flex;flex-direction:column;gap:10px;font-size:13px;min-height:44px}
+.prog.on{color:#F5F1EA}
+.prog .bar{height:2px;background:rgba(245,241,234,.25);position:relative;overflow:hidden}
+.prog .bar i{position:absolute;inset:0;background:#F5F1EA;transform:scaleX(0);transform-origin:left}
+.prog.on .bar i{animation:fill 6.5s linear both}
+.prog.done .bar i{transform:scaleX(1)}
+@keyframes fill{to{transform:scaleX(1)}}
+.arw{cursor:pointer;width:52px;height:52px;border-radius:50%;border:1.5px solid rgba(245,241,234,.6);background:transparent;color:#F5F1EA;display:flex;align-items:center;justify-content:center;transition:background .3s,color .3s}
+.arw:hover{background:#F5F1EA;color:#1C1916}
+
+/* categories */
+.cat{display:flex;flex-direction:column;align-items:center;gap:16px;text-decoration:none}
+.cat .disc{position:relative;width:176px;height:176px;transition:transform .5s cubic-bezier(.2,1.3,.4,1)}
+.cat:hover .disc{transform:translateY(-8px)}
+.cat .ring{transition:transform 1.2s cubic-bezier(.2,.8,.1,1);transform-origin:center;transform-box:fill-box}
+.cat:hover .ring{transform:rotate(120deg)}
+.cat .pat{transition:transform .8s cubic-bezier(.2,.8,.1,1);transform-origin:center;transform-box:fill-box}
+.cat:hover .pat{transform:scale(1.15)}
+.cat .lbl{font-weight:600;font-size:17px;position:relative}
+.cat .lbl::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:2px;background:var(--acc);transform:scaleX(0);transition:transform .35s}
+.cat:hover .lbl::after{transform:scaleX(1)}
+
+/* tabs + products */
+.tab{cursor:pointer;width:120px;height:48px;background:none;border:0;font-size:16px;font-weight:500;color:#5b554e;transition:color .3s}
+.tab.on{color:#1C1916;font-weight:600}
+.pc{display:flex;flex-direction:column;gap:12px;animation:up .7s cubic-bezier(.2,.8,.1,1) both}
+.pm{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:4px}
+.pm svg{display:block;width:100%;height:100%}
+.pm .g{transition:transform .9s cubic-bezier(.2,.8,.1,1);transform-origin:center;transform-box:fill-box}
+.pc:hover .pm .g{transform:scale(1.06) translateY(-6px)}
+.pm .zoom{opacity:0;transform:scale(1.5);transform-origin:center;transform-box:fill-box;transition:opacity .5s,transform 1s cubic-bezier(.2,.8,.1,1)}
+.pc:hover .pm .zoom{opacity:1;transform:scale(1)}
+.pm .ztag{position:absolute;left:12px;bottom:72px;background:#F5F1EA;font-size:11px;padding:5px 8px;opacity:0;transform:translateY(8px);transition:opacity .4s .15s,transform .4s .15s}
+.pc:hover .ztag{opacity:1;transform:none}
+.badge{position:absolute;top:12px;left:12px;background:#F5F1EA;font-size:11px;padding:5px 9px;border-radius:999px}
+.heart{position:absolute;top:8px;right:8px;width:44px;height:44px;border-radius:50%;border:0;background:rgba(245,241,234,.92);cursor:pointer;display:flex;align-items:center;justify-content:center;color:#1C1916;transition:transform .3s}
+.heart:hover{transform:scale(1.08)}
+.heart.on{color:var(--acc)}
+.heart.on svg{animation:hp .5s cubic-bezier(.2,1.8,.4,1)}
+@keyframes hp{40%{transform:scale(1.45)}}
+.qa{position:absolute;left:10px;right:10px;bottom:10px;display:flex;gap:6px;background:#F5F1EA;border-radius:6px;padding:6px;transform:translateY(130%);transition:transform .45s cubic-bezier(.7,0,.2,1)}
+.pc:hover .qa,.pc:focus-within .qa{transform:none}
+.qs{cursor:pointer;flex:1;min-height:44px;border:1px solid rgba(28,25,22,.25);background:transparent;border-radius:4px;font-family:'IBM Plex Mono',monospace;font-size:13px;transition:background .2s,color .2s,border-color .2s}
+.qs:hover{background:var(--ink);color:#F5F1EA;border-color:var(--ink)}
+
+/* logo */
+.dots i{display:block;width:7px;height:7px;border-radius:50%}
+a:hover .dots i{animation:hop .6s cubic-bezier(.2,1.6,.4,1)}
+a:hover .dots i:nth-child(2){animation-delay:.06s}a:hover .dots i:nth-child(3){animation-delay:.12s}a:hover .dots i:nth-child(4){animation-delay:.18s}a:hover .dots i:nth-child(5){animation-delay:.24s}
+@keyframes hop{40%{transform:translateY(-7px)}}
+
+/* decor by material */
+.fchip{cursor:pointer;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid rgba(28,25,22,.3);background:transparent;font-size:15px;font-weight:500;display:inline-flex;align-items:center;gap:8px;transition:background .3s,color .3s,border-color .3s}
+.fchip:hover{border-color:#1C1916}
+.fchip.on{background:#1C1916;color:#F5F1EA;border-color:#1C1916}
+.fchip sup{font-family:'IBM Plex Mono',monospace;font-size:10px}
+.pc.swA{animation-name:upA}.pc.swB{animation-name:upB}
+@keyframes upA{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes upB{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.mat{position:absolute;top:12px;left:12px;font-size:11px;padding:5px 9px;border-radius:999px;color:#F5F1EA}
+
+/* shop the room */
+.spot{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;border:0;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2}
+.spot::before{content:"";position:absolute;width:18px;height:18px;border-radius:50%;border:2px solid #F5F1EA;animation:pulse 2.2s ease-out infinite}
+.spot i{width:18px;height:18px;border-radius:50%;background:#F5F1EA;box-shadow:0 0 0 3px var(--acc);position:relative;transition:transform .3s,background .3s}
+.spot:hover i{transform:scale(1.25)}
+.spot.on i{transform:scale(1.35);background:var(--acc);box-shadow:0 0 0 3px #F5F1EA}
+@keyframes pulse{from{transform:scale(1);opacity:.9}to{transform:scale(2.8);opacity:0}}
+.popc{position:absolute;width:290px;background:#FBF8F3;border-radius:8px;padding:14px;display:flex;gap:14px;box-shadow:0 24px 60px rgba(28,25,22,.3);animation:popc .45s cubic-bezier(.2,1.2,.4,1) both;z-index:3}
+@keyframes popc{from{opacity:0;transform:translateY(14px) scale(.94)}}
+.glow{animation:glow 4s ease-in-out infinite}
+@keyframes glow{50%{opacity:.18}}
+.sway{animation:sway 5s ease-in-out infinite;transform-origin:bottom center;transform-box:fill-box}
+@keyframes sway{50%{transform:rotate(3deg)}}
+.addall{cursor:pointer;min-height:54px;padding:0 26px;border:0;border-radius:999px;background:#1C1916;color:#F5F1EA;font-weight:600;font-size:15px;display:inline-flex;align-items:center;gap:14px;transition:background .3s}
+.addall:hover{background:var(--acc)}
+.mini{cursor:pointer;min-height:44px;padding:0 16px;border:0;border-radius:999px;background:#1C1916;color:#F5F1EA;font-weight:600;font-size:14px;transition:background .3s}
+.mini:hover{background:var(--acc)}
+
+/* weave */
+.wp{stroke-dasharray:400;stroke-dashoffset:400;animation:wv 10s cubic-bezier(.6,0,.2,1) infinite}
+@keyframes wv{0%{stroke-dashoffset:400;opacity:1}10%{stroke-dashoffset:0;opacity:1}78%{stroke-dashoffset:0;opacity:1}88%,100%{stroke-dashoffset:0;opacity:0}}
+.cell{transform:scale(0);transform-origin:center;transform-box:fill-box;animation:cl 10s cubic-bezier(.2,1.4,.4,1) infinite}
+@keyframes cl{0%{transform:scale(0);opacity:1}5%{transform:scale(1);opacity:1}78%{transform:scale(1);opacity:1}88%,100%{transform:scale(1);opacity:0}}
+.shuttle{animation:sh 2.4s cubic-bezier(.6,0,.4,1) infinite alternate}
+@keyframes sh{from{transform:translateX(0)}to{transform:translateX(330px)}}
+
+/* crafts accordion */
+.pn{position:relative;flex:1 1 0;min-width:0;height:520px;overflow:hidden;border-radius:6px;color:#F5F1EA;cursor:pointer;transition:flex-grow .8s cubic-bezier(.7,0,.2,1);text-decoration:none;display:block}
+.pn.on{flex-grow:3.4}
+.pn .bgp{position:absolute;inset:0;transition:transform 1.2s cubic-bezier(.2,.8,.1,1)}
+.pn.on .bgp{transform:scale(1.08)}
+.pn .vt{position:absolute;left:24px;bottom:28px;writing-mode:vertical-rl;transform:rotate(180deg);font-size:34px;font-weight:700;transition:opacity .3s;white-space:nowrap}
+.pn.on .vt{opacity:0}
+.pn .body{position:absolute;left:36px;right:36px;bottom:36px;display:flex;flex-direction:column;gap:14px;opacity:0;transform:translateY(20px);transition:opacity .3s,transform .3s;max-width:460px}
+.pn.on .body{opacity:1;transform:none;transition:opacity .6s .35s,transform .7s .35s cubic-bezier(.2,.8,.1,1)}
+.pn .no{position:absolute;top:22px;left:24px;font-size:12px}
+
+/* promos */
+.promo{position:relative;height:440px;overflow:hidden;border-radius:6px;display:flex;flex-direction:column;justify-content:flex-end;padding:40px;text-decoration:none}
+.promo .bgp{position:absolute;inset:0;transition:transform 1.4s cubic-bezier(.2,.8,.1,1)}
+.promo:hover .bgp{transform:scale(1.07) rotate(-1deg)}
+.promo > *{position:relative}
+.lnk{font-weight:600;display:inline-flex;gap:10px;align-items:center}
+.lnk .ar{transition:transform .35s}
+.promo:hover .lnk .ar{transform:translateX(6px)}
+
+/* footer */
+.fcol a{color:#D9D3C8;text-decoration:none;font-size:15px;display:inline-block;padding:4px 0;transition:color .25s,transform .25s}
+.fcol a:hover{color:#fff;transform:translateX(4px)}
+.pay{border:1px solid rgba(245,241,234,.3);border-radius:4px;padding:6px 10px;font-size:11px;color:#D9D3C8}
+.nf{display:flex;border-bottom:1.5px solid #F5F1EA;height:56px;align-items:center}
+.nf input{flex:1;background:transparent;border:0;outline:none;font:inherit;font-size:17px;color:#F5F1EA}
+.nf input::placeholder{color:#a9a39a}
+.nf button{cursor:pointer;background:none;border:0;color:#F5F1EA;min-height:44px;font-weight:600;display:flex;gap:8px;align-items:center}
+
+/* bag */
+.scrim{position:fixed;inset:0;background:rgba(28,25,22,.45);z-index:40;border:0;width:100%;cursor:pointer;animation:fi .3s both}
+@keyframes fi{from{opacity:0}}
+.drawer{position:fixed;top:0;right:0;width:440px;height:min(100vh,960px);background:#FBF8F3;z-index:41;display:flex;flex-direction:column;animation:si .55s cubic-bezier(.2,.8,.1,1) both;box-shadow:-30px 0 60px rgba(28,25,22,.18)}
+@keyframes si{from{transform:translateX(100%)}}
+.bA{animation:bA .45s cubic-bezier(.2,1.6,.4,1)}.bB{animation:bB .45s cubic-bezier(.2,1.6,.4,1)}
+@keyframes bA{40%{transform:scale(1.5)}}@keyframes bB{40%{transform:scale(1.5)}}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);z-index:45;background:#1C1916;color:#F5F1EA;padding:12px 14px 12px 20px;border-radius:999px;display:flex;gap:14px;align-items:center;font-size:14px;animation:ti .5s cubic-bezier(.2,.8,.1,1) both}
+@keyframes ti{from{opacity:0;transform:translate(-50%,20px)}}
+.cta{cursor:pointer;width:100%;min-height:54px;border:0;border-radius:999px;background:#1C1916;color:#F5F1EA;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;transition:background .3s}
+.cta:hover{background:var(--acc)}
+
+@supports (animation-timeline: view()){
+.rv{animation:up linear both;animation-timeline:view();animation-range:entry 0% entry 40%}
+}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+.still *,.still *::before,.still *::after{animation:none !important;transition:none !important}
+.still .slide .ln > span,.still .slide .fu,.still .slide .bn,.still .slide .art{opacity:1;transform:none}
+.still .cell{transform:none}.still .wp{stroke-dashoffset:0}
+</style>
+</helmet>
+
+<div class="t {{motionCls}}" style="--acc: {{accent}}">
+
+<!-- utility bar -->
+<div class="m" style="background: #1C1916; color: #E9E3D8; font-size: 11px; height: 38px; display: flex; align-items: center; overflow: hidden">
+<div class="tk">
+<span>Free delivery inside Dhaka on orders over ৳3,000</span><span style="color: #E3A72F">✦</span><span>New: the Living Edit</span><span style="color: #E3A72F">✦</span><span>Corporate &amp; bulk gifting available</span><span style="color: #E3A72F">✦</span><span>Pay with bKash, Nagad or card</span><span style="color: #E3A72F">✦</span><span>Free delivery inside Dhaka on orders over ৳3,000</span><span style="color: #E3A72F">✦</span><span>New: the Living Edit</span><span style="color: #E3A72F">✦</span><span>Corporate &amp; bulk gifting available</span><span style="color: #E3A72F">✦</span><span>Pay with bKash, Nagad or card</span><span style="color: #E3A72F">✦</span>
+</div>
+</div>
+
+<!-- header -->
+<header style="position: sticky; top: 0; z-index: 30; background: #F5F1EA; border-bottom: 1px solid rgba(28,25,22,.12)">
+<div style="height: 84px; padding: 0 56px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center">
+<div style="display: flex">
+<label class="search"><span class="sr">Search</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg><input type="search" placeholder="Search cushions, lamps, jamdani…"></label>
+</div>
+<a href="#top" style="text-decoration: none; display: flex; flex-direction: column; align-items: center; line-height: 1">
+<span style="display: flex; align-items: center; gap: 10px">
+<span style="font-family: 'Hind Siliguri', sans-serif; font-size: 32px; font-weight: 600; line-height: 1.05">পঞ্চবর্ণ</span>
+<span class="dots" aria-hidden="true" style="display: flex; gap: 4px"><i style="background: #A6261C"></i><i style="background: #E3A72F"></i><i style="background: #1D2440"></i><i style="background: #3F4A2E"></i><i style="background: #B5531A"></i></span>
+</span>
+<span class="d" style="font-size: 14px; font-weight: 700; letter-spacing: .34em; padding-left: .34em; margin-top: 4px">PANCHABARNA</span>
+</a>
+<div style="display: flex; justify-content: flex-end; gap: 4px; align-items: center">
+<a class="ib" href="#top" aria-label="Account"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></a>
+<a class="ib" href="#top" aria-label="Wishlist, {{wishCount}} items"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"></path></svg><span class="cnt">{{wishCount}}</span></a>
+<button class="ib" onClick="{{openBag}}" aria-label="Open bag, {{bagCount}} items"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 8h14l-1 13H6L5 8z"></path><path d="M9 8V6a3 3 0 0 1 6 0v2"></path></svg><span>Bag</span><span class="cnt {{bumpCls}}">{{bagCount}}</span></button>
+</div>
+</div>
+<nav aria-label="Categories" style="display: flex; justify-content: center; border-top: 1px solid rgba(28,25,22,.08)">
+<sc-for list="{{nav}}" as="n" hint-placeholder-count="7">
+<div class="navi">
+<a href="#shop" style="color: {{n.color}}">{{n.label}}</a>
+<sc-if value="{{n.cols}}" hint-placeholder-val="{{false}}">
+<div class="mega">
+<div style="max-width: 1328px; margin: 0 auto; padding: 36px 0 40px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) 1.3fr; gap: 40px">
+<sc-for list="{{n.cols}}" as="col" hint-placeholder-count="3">
+<div class="mcol" style="display: flex; flex-direction: column; gap: 4px; animation-delay: {{col.delay}}">
+<span class="m" style="font-size: 11px; color: #6a635a; margin-bottom: 8px">{{col.title}}</span>
+<sc-for list="{{col.links}}" as="l" hint-placeholder-count="4"><a href="#shop">{{l}}</a></sc-for>
+</div>
+</sc-for>
+<a href="#shop" class="mcol" style="position: relative; border-radius: 6px; overflow: hidden; min-height: 220px; display: flex; align-items: flex-end; padding: 22px; text-decoration: none; color: #F5F1EA; background: {{n.tone}}; animation-delay: .24s">
+<span style="display: flex; flex-direction: column; gap: 6px; position: relative"><span class="m" style="font-size: 11px">Featured</span><span class="d" style="font-size: 28px; font-weight: 700">{{n.feature}}</span></span>
+</a>
+</div>
+</div>
+</sc-if>
+</div>
+</sc-for>
+</nav>
+</header>
+
+<!-- hero slider -->
+<section id="top" class="hero" style="background-color: {{heroTone}}" aria-roledescription="carousel" aria-label="Campaigns">
+<sc-for list="{{slides}}" as="s" hint-placeholder-count="3">
+<div class="{{s.cls}}" aria-hidden="{{s.hidden}}">
+<div class="bn" style="position: absolute; right: -40px; top: -70px; font-size: 420px; line-height: 1; font-weight: 600; color: transparent; -webkit-text-stroke: 1.5px rgba(245,241,234,.18); white-space: nowrap; pointer-events: none" aria-hidden="true">{{s.bn}}</div>
+<div style="position: absolute; left: 56px; top: 92px; width: 640px; display: flex; flex-direction: column; gap: 26px">
+<span class="m fu" style="font-size: 12px; color: #F2D9A3; animation-delay: .1s">{{s.kicker}}</span>
+<h1 class="d" style="margin: 0; font-size: 104px; line-height: .92; font-weight: 700">
+<span class="ln"><span style="animation-delay: .15s">{{s.l1}}</span></span>
+<span class="ln"><span style="animation-delay: .27s; font-style: italic; font-weight: 400">{{s.l2}}</span></span>
+</h1>
+<p class="fu" style="margin: 0; font-size: 19px; line-height: 1.55; max-width: 44ch; animation-delay: .55s; color: #EDE6DA">{{s.copy}}</p>
+<div class="fu" style="display: flex; gap: 12px; animation-delay: .7s">
+<a href="#shop" class="hb"><span>{{s.cta}}</span><span class="ar" aria-hidden="true">→</span></a>
+<a href="#crafts" class="hb ghost"><span>Meet the makers</span></a>
+</div>
+</div>
+<div class="art" style="position: absolute; right: 110px; top: 50px; width: 540px; height: 540px">
+<svg viewBox="0 0 540 540" width="540" height="540" role="img" aria-label="{{s.artLabel}}">
+<defs>
+<pattern id="hp-{{s.id}}" width="40" height="40" patternUnits="userSpaceOnUse"><rect width="40" height="40" fill="{{s.c1}}"></rect><path d="{{s.motif}}" fill="{{s.c2}}" stroke="{{s.c2}}" stroke-width="1.2"></path></pattern>
+<clipPath id="hc-{{s.id}}"><circle cx="270" cy="270" r="210"></circle></clipPath>
+</defs>
+<g class="spinr"><circle cx="270" cy="270" r="262" fill="none" stroke="rgba(245,241,234,.35)" stroke-width="1" stroke-dasharray="2 9"></circle></g>
+<g class="spin"><circle cx="270" cy="270" r="238" fill="none" stroke="#E3A72F" stroke-width="10" stroke-dasharray="1 17"></circle></g>
+<g clip-path="url(#hc-{{s.id}})">
+<g class="kb"><rect x="40" y="40" width="460" height="460" fill="url(#hp-{{s.id}})"></rect></g>
+<path d="{{s.shape}}" fill="{{s.c3}}" stroke="#1C1916" stroke-width="1.6" stroke-linejoin="round" transform="translate(120 100)"></path>
+<path d="{{s.shapeDetail}}" fill="none" stroke="#1C1916" stroke-width="1.2" transform="translate(120 100)"></path>
+</g>
+</svg>
+<span class="m" style="position: absolute; left: 40px; bottom: 36px; font-size: 10px; background: #F5F1EA; color: #1C1916; padding: 5px 8px">[Campaign photo]</span>
+</div>
+</div>
+</sc-for>
+<div style="position: absolute; left: 56px; right: 56px; bottom: 34px; display: flex; justify-content: space-between; align-items: flex-end">
+<div style="display: flex; gap: 24px" role="tablist" aria-label="Choose campaign">
+<sc-for list="{{slides}}" as="s" hint-placeholder-count="3">
+<button class="{{s.pcls}}" onClick="{{s.go}}" role="tab" aria-selected="{{s.on}}"><span class="bar"><i></i></span><span>{{s.num}} — {{s.tab}}</span></button>
+</sc-for>
+</div>
+<div style="display: flex; gap: 10px">
+<button class="arw" onClick="{{prev}}" aria-label="Previous campaign"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></button>
+<button class="arw" onClick="{{next}}" aria-label="Next campaign"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg></button>
+</div>
+</div>
+</section>
+
+<!-- categories -->
+<section style="padding: 80px 56px 64px">
+<div class="rv" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 44px">
+<h2 class="d" style="margin: 0; font-size: 52px; font-weight: 700; line-height: 1">Shop by category</h2>
+<a href="#shop" class="m" style="font-size: 12px">View all categories →</a>
+</div>
+<div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 24px">
+<sc-for list="{{cats}}" as="c" hint-placeholder-count="6">
+<a class="cat rv" href="#shop">
+<span class="disc">
+<svg viewBox="0 0 176 176" width="176" height="176" aria-hidden="true">
+<defs>
+<pattern id="cp-{{c.id}}" width="40" height="40" patternUnits="userSpaceOnUse"><rect width="40" height="40" fill="{{c.c1}}"></rect><path d="{{c.motif}}" fill="{{c.c2}}" stroke="{{c.c2}}" stroke-width="1.2"></path></pattern>
+<clipPath id="cc-{{c.id}}"><circle cx="88" cy="88" r="74"></circle></clipPath>
+</defs>
+<g clip-path="url(#cc-{{c.id}})"><rect class="pat" x="0" y="0" width="176" height="176" fill="url(#cp-{{c.id}})"></rect></g>
+<circle class="ring" cx="88" cy="88" r="84" fill="none" stroke="#1C1916" stroke-width="1.2" stroke-dasharray="40 8 4 8"></circle>
+</svg>
+</span>
+<span class="lbl">{{c.label}}</span>
+<span style="font-size: 14px; color: #5b554e; margin-top: -10px; font-family: 'Hind Siliguri', sans-serif">{{c.bn}}</span>
+</a>
+</sc-for>
+</div>
+</section>
+
+<!-- new arrivals -->
+<section id="shop" style="padding: 40px 56px 88px">
+<div class="rv" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 36px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span class="m" style="font-size: 12px; color: #A6261C">Just in</span>
+<h2 class="d" style="margin: 0; font-size: 52px; font-weight: 700; line-height: 1">New arrivals</h2>
+</div>
+<div style="position: relative; display: flex; border-bottom: 1px solid rgba(28,25,22,.18)" role="tablist" aria-label="New arrivals by department">
+<sc-for list="{{tabs}}" as="tb" hint-placeholder-count="3">
+<button class="{{tb.cls}}" onClick="{{tb.pick}}" role="tab" aria-selected="{{tb.on}}">{{tb.label}}</button>
+</sc-for>
+<span style="position: absolute; left: 0; bottom: -1px; width: 120px; height: 2px; background: {{accent}}; transform: translateX({{tabX}}); transition: transform .5s cubic-bezier(.7,0,.2,1)"></span>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px">
+<sc-for list="{{products}}" as="p" hint-placeholder-count="4">
+<article class="pc" style="animation-delay: {{p.delay}}">
+<div class="pm" style="background: {{p.bg}}">
+<svg viewBox="0 0 300 375" preserveAspectRatio="xMidYMid slice" role="img" aria-label="{{p.name}}">
+<defs><pattern id="pp-{{p.id}}" width="40" height="40" patternUnits="userSpaceOnUse"><rect width="40" height="40" fill="{{p.c1}}"></rect><path d="{{p.motif}}" fill="{{p.c2}}" stroke="{{p.c2}}" stroke-width="1.2"></path></pattern></defs>
+<ellipse cx="150" cy="345" rx="96" ry="10" fill="rgba(28,25,22,.12)"></ellipse>
+<g class="g">
+<path d="{{p.shape}}" fill="url(#pp-{{p.id}})" stroke="#1C1916" stroke-width="1.4" stroke-linejoin="round"></path>
+<path d="{{p.detail}}" fill="none" stroke="#1C1916" stroke-width="1.1"></path>
+</g>
+<rect class="zoom" x="0" y="0" width="300" height="375" fill="url(#pp-{{p.id}})"></rect>
+</svg>
+<span class="m ztag">Weave detail</span>
+<sc-if value="{{p.badge}}" hint-placeholder-val="{{true}}"><span class="m badge">{{p.badge}}</span></sc-if>
+<button class="{{p.heartCls}}" onClick="{{p.wish}}" aria-label="Save {{p.name}} to wishlist" aria-pressed="{{p.wished}}"><svg width="20" height="20" viewBox="0 0 24 24" fill="{{p.heartFill}}" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"></path></svg></button>
+<div class="qa">
+<sc-for list="{{p.sizes}}" as="z" hint-placeholder-count="4"><button class="qs" onClick="{{z.add}}" aria-label="Add {{p.name}} in {{z.label}}">{{z.label}}</button></sc-for>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span class="m" style="font-size: 11px; color: #6a635a">{{p.craft}}</span>
+<h3 style="margin: 0; font-size: 17px; font-weight: 600">{{p.name}}</h3>
+<span style="font-size: 16px; font-weight: 500">{{p.priceLabel}}</span>
+</div>
+</article>
+</sc-for>
+</div>
+</section>
+
+<!-- decor by material -->
+<section id="decor" style="padding: 8px 56px 96px">
+<div class="rv" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 32px; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span class="m" style="font-size: 12px; color: #A6261C">Handmade décor · হাতের কাজ</span>
+<h2 class="d" style="margin: 0; font-size: 52px; font-weight: 700; line-height: 1">Home décor, by material</h2>
+<p style="margin: 0; font-size: 17px; color: #4f4942; max-width: 56ch">Brass from the metalworkers, clay from the potters' villages, cane and hogla from the weavers — pick what your room is missing.</p>
+</div>
+<a href="#decor" class="m" style="font-size: 12px; white-space: nowrap">View all décor →</a>
+</div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px" role="group" aria-label="Filter décor by material">
+<sc-for list="{{mats}}" as="mt" hint-placeholder-count="6">
+<button class="{{mt.cls}}" onClick="{{mt.pick}}" aria-pressed="{{mt.on}}">{{mt.label}}<sup>{{mt.n}}</sup></button>
+</sc-for>
+</div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px 28px">
+<sc-for list="{{decor}}" as="p" hint-placeholder-count="12">
+<article class="{{p.cardCls}}" style="animation-delay: {{p.delay}}">
+<div class="pm" style="background: {{p.bg}}">
+<svg viewBox="0 0 300 375" preserveAspectRatio="xMidYMid slice" role="img" aria-label="{{p.name}}">
+<defs><pattern id="dp-{{p.id}}" width="40" height="40" patternUnits="userSpaceOnUse"><rect width="40" height="40" fill="{{p.c1}}"></rect><path d="{{p.motif}}" fill="{{p.c2}}" stroke="{{p.c2}}" stroke-width="1.2"></path></pattern></defs>
+<ellipse cx="150" cy="330" rx="100" ry="10" fill="rgba(28,25,22,.12)"></ellipse>
+<g class="g">
+<path d="{{p.shape}}" fill="url(#dp-{{p.id}})" stroke="#1C1916" stroke-width="1.4" stroke-linejoin="round"></path>
+<path d="{{p.detail}}" fill="none" stroke="#1C1916" stroke-width="1.1"></path>
+</g>
+<rect class="zoom" x="0" y="0" width="300" height="375" fill="url(#dp-{{p.id}})"></rect>
+</svg>
+<span class="m ztag">{{p.zoomLabel}}</span>
+<span class="m mat" style="background: {{p.matTone}}">{{p.matLabel}}</span>
+<button class="{{p.heartCls}}" onClick="{{p.wish}}" aria-label="Save {{p.name}} to wishlist" aria-pressed="{{p.wished}}"><svg width="20" height="20" viewBox="0 0 24 24" fill="{{p.heartFill}}" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"></path></svg></button>
+<div class="qa">
+<sc-for list="{{p.sizes}}" as="z" hint-placeholder-count="1"><button class="qs" onClick="{{z.add}}" aria-label="Add {{p.name}}, {{z.label}}">{{z.label}}</button></sc-for>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span class="m" style="font-size: 11px; color: #6a635a">{{p.craft}}</span>
+<h3 style="margin: 0; font-size: 17px; font-weight: 600">{{p.name}}</h3>
+<span style="font-size: 16px; font-weight: 500">{{p.priceLabel}}</span>
+</div>
+</article>
+</sc-for>
+</div>
+</section>
+
+<!-- shop the room -->
+<section id="room" style="padding: 8px 56px 96px">
+<div class="rv" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 32px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span class="m" style="font-size: 12px; color: #A6261C">Living room · tap a dot</span>
+<h2 class="d" style="margin: 0; font-size: 52px; font-weight: 700; line-height: 1">Shop the room</h2>
+</div>
+<button class="addall" onClick="{{addRoom}}"><span>Add the whole room · {{roomTotal}}</span><span aria-hidden="true">→</span></button>
+</div>
+<div class="rv" style="position: relative; width: 1328px; height: 640px; border-radius: 8px; overflow: hidden">
+<svg viewBox="0 0 1328 640" width="1328" height="640" role="img" aria-label="Illustrated living room with a sofa, cushions, a lamp, a floor mat, a cane stool, a planter and a wall panel">
+<defs>
+<pattern id="sj" width="40" height="40" patternUnits="userSpaceOnUse"><rect width="40" height="40" fill="#A6261C"></rect><path d="M20 6 L30 20 L20 34 L10 20 Z M20 14 L24 20 L20 26 L16 20 Z" fill="#F2D9A3"></path></pattern>
+<pattern id="ss" width="40" height="40" patternUnits="userSpaceOnUse"><rect width="40" height="40" fill="#EFE6D2"></rect><path d="M2 10 H10 M16 10 H24 M30 10 H38 M8 30 H16 M22 30 H30" stroke="#B4473A" stroke-width="2"></path></pattern>
+<pattern id="sk" width="28" height="28" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="28" height="28" fill="#D9B77A"></rect><path d="M0 0 H14 V14 H0 Z M14 14 H28 V28 H14 Z" fill="#C49A55"></path></pattern>
+<pattern id="sa" width="40" height="40" patternUnits="userSpaceOnUse"><rect width="40" height="40" fill="#E3A72F"></rect><path d="M20 12 C24 16 24 20 20 24 C16 20 16 16 20 12 Z M12 20 C16 16 20 16 20 20 C16 24 12 24 12 20 Z M28 20 C24 16 20 16 20 20 C24 24 28 24 28 20 Z" fill="#7E2219"></path></pattern>
+<pattern id="sl" width="40" height="40" patternUnits="userSpaceOnUse"><rect width="40" height="40" fill="#2E4A6B"></rect><path d="M0 0 H40 V5 H0 Z M0 18 H40 V20 H0 Z" fill="#E9D7B0"></path></pattern>
+</defs>
+<rect width="1328" height="640" fill="#E8DCC8"></rect>
+<rect y="470" width="1328" height="170" fill="#C9AE86"></rect>
+<rect y="464" width="1328" height="8" fill="#B79A70"></rect>
+<path class="glow" d="M1050 270 L1180 270 L1250 470 L980 470 Z" fill="#F7D98B" opacity=".4"></path>
+<rect x="540" y="60" width="250" height="170" fill="#1C1916"></rect>
+<rect x="552" y="72" width="226" height="146" fill="url(#sa)"></rect>
+<ellipse cx="660" cy="500" rx="360" ry="14" fill="rgba(28,25,22,.18)"></ellipse>
+<path d="M290 520 L1040 520 L1120 630 L210 630 Z" fill="url(#sk)" stroke="#8A6A2B" stroke-width="2"></path>
+<path d="M312 532 L1018 532 L1088 618 L242 618 Z" fill="none" stroke="#7E2219" stroke-width="3"></path>
+<rect x="380" y="250" width="580" height="150" rx="28" fill="#2B3554"></rect>
+<rect x="400" y="370" width="540" height="84" rx="16" fill="#33406A"></rect>
+<rect x="340" y="320" width="80" height="160" rx="24" fill="#24304D"></rect>
+<rect x="920" y="320" width="80" height="160" rx="24" fill="#24304D"></rect>
+<rect x="372" y="478" width="12" height="20" fill="#1C1916"></rect><rect x="956" y="478" width="12" height="20" fill="#1C1916"></rect>
+<rect x="430" y="290" width="120" height="110" rx="18" fill="url(#sj)" stroke="#1C1916" stroke-width="1.5" transform="rotate(-8 490 345)"></rect>
+<rect x="580" y="296" width="110" height="104" rx="18" fill="url(#ss)" stroke="#1C1916" stroke-width="1.5" transform="rotate(4 635 348)"></rect>
+<rect x="790" y="290" width="120" height="110" rx="18" fill="url(#sj)" stroke="#1C1916" stroke-width="1.5" transform="rotate(8 850 345)"></rect>
+<rect x="1030" y="380" width="170" height="14" fill="#6E4A2A"></rect>
+<rect x="1046" y="394" width="10" height="100" fill="#6E4A2A"></rect><rect x="1174" y="394" width="10" height="100" fill="#6E4A2A"></rect>
+<path d="M1100 380 C1086 350 1090 300 1106 272 L1124 272 C1140 300 1144 350 1130 380 Z" fill="#B5531A" stroke="#1C1916" stroke-width="1.5"></path>
+<path d="M1072 175 L1158 175 L1180 270 L1050 270 Z" fill="url(#sl)" stroke="#1C1916" stroke-width="1.5"></path>
+<path d="M150 400 H270 L252 450 L270 510 H150 L168 450 Z" fill="#C98A4A" stroke="#1C1916" stroke-width="1.5"></path>
+<path d="M168 450 H252 M160 412 L260 498 M260 412 L160 498" stroke="#8A5A2A" stroke-width="2" fill="none"></path>
+<g class="sway"><path d="M115 362 C100 300 70 280 56 246 M115 362 C120 300 150 270 172 238 M115 362 C112 310 110 280 118 214" stroke="#3F4A2E" stroke-width="7" stroke-linecap="round" fill="none"></path></g>
+<path d="M80 470 C60 430 66 382 90 362 H140 C164 382 170 430 150 470 Z" fill="#B5531A" stroke="#1C1916" stroke-width="1.5"></path>
+<path d="M72 410 H158" stroke="#F2D9A3" stroke-width="3" stroke-dasharray="6 6"></path>
+</svg>
+<sc-for list="{{spots}}" as="sp" hint-placeholder-count="6">
+<button class="{{sp.cls}}" style="left: {{sp.x}}px; top: {{sp.y}}px" onClick="{{sp.pick}}" aria-label="Show {{sp.name}}" aria-expanded="{{sp.on}}"><i></i></button>
+</sc-for>
+<sc-if value="{{rp}}" hint-placeholder-val="{{false}}">
+<div class="popc" style="left: {{rp.left}}px; top: {{rp.top}}px" role="dialog" aria-label="{{rp.name}}">
+<span style="width: 72px; height: 90px; border-radius: 4px; background: {{rp.c1}}; flex-shrink: 0"></span>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 4px">
+<span class="m" style="font-size: 10px; color: #6a635a">{{rp.craft}}</span>
+<span style="font-weight: 600; font-size: 16px; line-height: 1.25">{{rp.name}}</span>
+<span style="font-size: 15px">{{rp.priceLabel}}</span>
+<div style="display: flex; gap: 6px; margin-top: 4px; align-items: center"><button class="mini" onClick="{{rp.add}}">Add to bag</button><button class="ib" onClick="{{closeSpot}}" aria-label="Close" style="min-width: 36px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></div>
+</div>
+</div>
+</sc-if>
+</div>
+</section>
+
+<!-- weave motion graphic -->
+<section style="background: #1D2440; color: #F5F1EA; padding: 96px 56px; display: grid; grid-template-columns: 1fr 520px; gap: 80px; align-items: center; overflow: hidden">
+<div class="rv" style="display: flex; flex-direction: column; gap: 28px; max-width: 620px">
+<span class="m" style="font-size: 12px; color: #E3A72F">From the loom</span>
+<h2 class="d" style="margin: 0; font-size: 76px; line-height: .95; font-weight: 700">Every jamdani starts as <span style="font-style: italic; font-weight: 400">one thread.</span></h2>
+<p style="margin: 0; font-size: 19px; line-height: 1.6; color: #DCD6CB">The motif isn't printed on — it's woven in, one weft at a time, by a weaver working from memory. The same looms that weave our sarees weave our cushion covers and runners.</p>
+<div style="display: flex; gap: 12px">
+<a href="#crafts" class="hb"><span>See how it's made</span><span class="ar" aria-hidden="true">→</span></a>
+</div>
+</div>
+<div style="position: relative">
+<svg viewBox="0 0 440 440" width="520" height="520" role="img" aria-label="Animation of warp and weft threads weaving a jamdani diamond motif">
+<rect x="0" y="0" width="440" height="440" fill="#171D35"></rect>
+<sc-for list="{{warps}}" as="w" hint-placeholder-count="20"><line class="wp" x1="{{w.x}}" y1="20" x2="{{w.x}}" y2="420" stroke="#F5F1EA" stroke-opacity=".45" stroke-width="1.4" style="animation-delay: {{w.d}}"></line></sc-for>
+<sc-for list="{{wefts}}" as="w" hint-placeholder-count="20"><line class="wp" x1="20" y1="{{w.y}}" x2="420" y2="{{w.y}}" stroke="#E3A72F" stroke-opacity=".6" stroke-width="1.4" style="animation-delay: {{w.d}}"></line></sc-for>
+<sc-for list="{{cells}}" as="c" hint-placeholder-count="30"><rect class="cell" x="{{c.x}}" y="{{c.y}}" width="14" height="14" fill="{{c.f}}" transform="rotate(45 {{c.cx}} {{c.cy}})" style="animation-delay: {{c.d}}"></rect></sc-for>
+<g class="shuttle"><rect x="40" y="424" width="70" height="10" rx="5" fill="#E3A72F"></rect></g>
+</svg>
+<span class="m" style="position: absolute; left: 0; top: -28px; font-size: 11px; color: #C9C3B8">Warp · Weft · Motif</span>
+</div>
+</section>
+
+<!-- crafts -->
+<section id="crafts" style="padding: 96px 56px">
+<div class="rv" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px">
+<h2 class="d" style="margin: 0; font-size: 52px; font-weight: 700; line-height: 1">Our collections</h2>
+<span class="m" style="font-size: 12px; color: #5b554e">Hover to open</span>
+</div>
+<div style="display: flex; gap: 14px">
+<sc-for list="{{crafts}}" as="k" hint-placeholder-count="4">
+<a class="{{k.cls}}" href="#shop" onMouseEnter="{{k.pick}}" onFocus="{{k.pick}}">
+<svg class="bgp" viewBox="0 0 800 520" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" aria-hidden="true">
+<defs><pattern id="kp-{{k.id}}" width="40" height="40" patternUnits="userSpaceOnUse"><rect width="40" height="40" fill="{{k.c1}}"></rect><path d="{{k.motif}}" fill="{{k.c2}}" stroke="{{k.c2}}" stroke-width="1.2" opacity=".55"></path></pattern></defs>
+<rect width="800" height="520" fill="url(#kp-{{k.id}})"></rect>
+<rect width="800" height="520" fill="{{k.c1}}" opacity=".35"></rect>
+</svg>
+<span class="m no">{{k.num}}</span>
+<span class="d vt">{{k.title}}</span>
+<div class="body">
+<span style="font-size: 18px; color: #F2D9A3">{{k.bn}}</span>
+<span class="d" style="font-size: 56px; font-weight: 700; line-height: .95">{{k.title}}</span>
+<p style="margin: 0; font-size: 17px; line-height: 1.55">{{k.copy}}</p>
+<span class="m" style="font-size: 11px; color: #F2D9A3">{{k.range}}</span>
+<span class="lnk" style="margin-top: 6px">Explore {{k.title}} <span aria-hidden="true">→</span></span>
+</div>
+</a>
+</sc-for>
+</div>
+</section>
+
+<!-- promos -->
+<section style="padding: 0 56px 96px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px">
+<a class="promo rv" href="#shop" style="color: #1C1916">
+<svg class="bgp" viewBox="0 0 660 440" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" aria-hidden="true"><defs><pattern id="pr1" width="40" height="40" patternUnits="userSpaceOnUse"><rect width="40" height="40" fill="#EAC97E"></rect><path d="M20 12 C24 16 24 20 20 24 C16 20 16 16 20 12 Z M12 20 C16 16 20 16 20 20 C16 24 12 24 12 20 Z M28 20 C24 16 20 16 20 20 C24 24 28 24 28 20 Z" fill="#C98A1D"></path></pattern></defs><rect width="660" height="440" fill="url(#pr1)"></rect></svg>
+<span class="m" style="font-size: 12px; background: #F5F1EA; align-self: flex-start; padding: 5px 9px; margin-bottom: 16px">Gifts</span>
+<span class="d" style="font-size: 54px; font-weight: 700; line-height: .95; max-width: 12ch">Little things, made by hand</span>
+<span class="lnk" style="margin-top: 16px">Gifts under ৳2,000 <span class="ar" aria-hidden="true">→</span></span>
+</a>
+<a class="promo rv" href="#shop" style="color: #F5F1EA">
+<svg class="bgp" viewBox="0 0 660 440" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" aria-hidden="true"><defs><pattern id="pr2" width="40" height="40" patternUnits="userSpaceOnUse"><rect width="40" height="40" fill="#3F4A2E"></rect><path d="M2 10 H10 M16 10 H24 M30 10 H38 M8 30 H16 M22 30 H30" stroke="#C9C08F" stroke-width="2" fill="none"></path></pattern></defs><rect width="660" height="440" fill="url(#pr2)"></rect></svg>
+<span class="m" style="font-size: 12px; background: #F5F1EA; color: #1C1916; align-self: flex-start; padding: 5px 9px; margin-bottom: 16px">Corporate</span>
+<span class="d" style="font-size: 54px; font-weight: 700; line-height: .95; max-width: 13ch">Gift boxes for teams &amp; clients</span>
+<span class="lnk" style="margin-top: 16px">Talk to us about bulk orders <span class="ar" aria-hidden="true">→</span></span>
+</a>
+</section>
+
+<!-- footer -->
+<footer style="background: #1C1916; color: #F5F1EA; padding: 80px 56px 32px">
+<div style="display: grid; grid-template-columns: 1.6fr repeat(3, minmax(0, 1fr)); gap: 56px; padding-bottom: 56px; border-bottom: 1px solid rgba(245,241,234,.18)">
+<div style="display: flex; flex-direction: column; gap: 20px">
+<span class="d" style="font-size: 40px; font-weight: 700; line-height: 1">Letters from the loom</span>
+<p style="margin: 0; color: #D9D3C8; font-size: 16px; max-width: 40ch">New drops, festival edits and the people who make them. Once a month.</p>
+<sc-if value="{{notJoined}}" hint-placeholder-val="{{true}}">
+<form class="nf" onSubmit="{{join}}" style="max-width: 440px"><label for="nl" class="sr">Email address</label><input id="nl" type="email" placeholder="Your email" required=""><button type="submit">Subscribe <span aria-hidden="true">→</span></button></form>
+</sc-if>
+<sc-if value="{{joined}}" hint-placeholder-val="{{false}}"><p style="margin: 0; font-size: 16px; color: #E3A72F">Thank you — the next letter is on its way.</p></sc-if>
+</div>
+<div class="fcol" style="display: flex; flex-direction: column; gap: 4px"><span class="m" style="font-size: 11px; color: #a9a39a; margin-bottom: 10px">Shop</span><a href="#shop">Living</a><a href="#shop">Bedroom</a><a href="#shop">Dining</a><a href="#shop">Wear</a><a href="#shop">Crafts &amp; Gifts</a></div>
+<div class="fcol" style="display: flex; flex-direction: column; gap: 4px"><span class="m" style="font-size: 11px; color: #a9a39a; margin-bottom: 10px">Help</span><a href="#top">Track your order</a><a href="#top">Corporate orders</a><a href="#top">Exchanges &amp; returns</a><a href="#top">Size guide</a><a href="#top">Store locations</a></div>
+<div class="fcol" style="display: flex; flex-direction: column; gap: 4px"><span class="m" style="font-size: 11px; color: #a9a39a; margin-bottom: 10px">About</span><a href="#crafts">Our artisans</a><a href="#crafts">Crafts we work with</a><a href="#top">Careers</a><a href="#top">Contact</a></div>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center; padding-top: 24px">
+<span class="m" style="font-size: 11px; color: #a9a39a">© Panchabarna · পঞ্চবর্ণ [YEAR] · Dhaka</span>
+<div class="m" style="display: flex; gap: 8px"><span class="pay">bKash</span><span class="pay">Nagad</span><span class="pay">Visa</span><span class="pay">Mastercard</span><span class="pay">Cash on delivery</span></div>
+</div>
+</footer>
+
+<!-- bag -->
+<sc-if value="{{bagOpen}}" hint-placeholder-val="{{false}}">
+<button class="scrim" onClick="{{closeBag}}" aria-label="Close bag"></button>
+<aside class="drawer" aria-label="Your bag">
+<div style="display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; border-bottom: 1px solid rgba(28,25,22,.15)">
+<span class="d" style="font-size: 30px; font-weight: 700">Your bag ({{bagCount}})</span>
+<button class="ib" onClick="{{closeBag}}" aria-label="Close bag"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"></path></svg></button>
+</div>
+<div style="flex: 1; overflow-y: auto; padding: 8px 24px">
+<sc-if value="{{bagEmpty}}" hint-placeholder-val="{{false}}"><p style="font-size: 15px; color: #5b554e; padding: 24px 0">Your bag is empty. Hover any piece and pick a size.</p></sc-if>
+<sc-for list="{{bagItems}}" as="b" hint-placeholder-count="2">
+<div style="display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid rgba(28,25,22,.12); align-items: center; animation: up .5s both">
+<span style="width: 64px; height: 80px; border-radius: 4px; background: {{b.tone}}; flex-shrink: 0"></span>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">{{b.name}}</span><span class="m" style="font-size: 11px; color: #5b554e">{{b.size}} · {{b.priceLabel}}</span></div>
+<button class="ib" onClick="{{b.remove}}" aria-label="Remove {{b.name}}" style="font-size: 13px; text-decoration: underline">Remove</button>
+</div>
+</sc-for>
+</div>
+<div style="padding: 20px 24px; border-top: 1px solid rgba(28,25,22,.15); display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; justify-content: space-between; font-size: 17px; font-weight: 600"><span>Subtotal</span><span>{{subtotal}}</span></div>
+<button class="cta"><span>Checkout</span><span aria-hidden="true">→</span></button>
+</div>
+</aside>
+</sc-if>
+<sc-if value="{{toast}}" hint-placeholder-val="{{false}}">
+<div class="toast" role="status"><span style="width: 8px; height: 8px; border-radius: 50%; background: #E3A72F"></span><span>{{toast}}</span><button class="ib" onClick="{{openBag}}" style="color: #F5F1EA; text-decoration: underline; min-height: 32px">View bag</button></div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#A6261C","options":["#A6261C","#1D5C4A","#2B3A8C","#B5531A"]},"motion":{"editor":"boolean","default":true},"autoplay":{"editor":"boolean","default":true},"$preview":{"width":1440,"height":6900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { slide: 0, tab: 0, wish: {}, bag: [], bump: 0, bagOpen: false, toast: '', craft: 0, joined: false, spot: 'lamp', mat: 'all', matTurn: 0 };
+  }
+  componentDidMount() { this.arm(); }
+  componentWillUnmount() { clearTimeout(this._s); clearTimeout(this._t); }
+  arm() {
+    var self = this;
+    clearTimeout(this._s);
+    if ((this.props.autoplay ?? true) === false) return;
+    this._s = setTimeout(function () { self.go((self.state.slide + 1) % 3); }, 6500);
+  }
+  go(i) { this.setState({ slide: i }); this.arm(); }
+  fmt(n) { return '৳' + n.toLocaleString('en-IN'); }
+  motifs() {
+    return {
+      jam: 'M20 6 L30 20 L20 34 L10 20 Z M20 14 L24 20 L20 26 L16 20 Z',
+      butah: 'M20 12 C24 16 24 20 20 24 C16 20 16 16 20 12 Z M12 20 C16 16 20 16 20 20 C16 24 12 24 12 20 Z M28 20 C24 16 20 16 20 20 C24 24 28 24 28 20 Z',
+      stitch: 'M2 10 H10 M16 10 H24 M30 10 H38 M8 30 H16 M22 30 H30',
+      stripe: 'M0 0 H40 V5 H0 Z M0 18 H40 V20 H0 Z',
+      check: 'M0 0 H18 V18 H0 Z M20 20 H38 V38 H20 Z',
+      dot: 'M20 17 a3 3 0 1 0 0.01 0 Z M0 -3 a3 3 0 1 0 0.01 0 Z M40 37 a3 3 0 1 0 0.01 0 Z'
+    };
+  }
+  shapes() {
+    return {
+      long: { d: 'M120 50 L100 58 L60 80 L40 200 L66 206 L84 118 L84 330 L216 330 L216 118 L234 206 L260 200 L240 80 L200 58 L180 50 C172 62 160 66 150 66 C140 66 128 62 120 50 Z', x: 'M150 66 L150 150 M120 50 C128 58 140 62 150 62 C160 62 172 58 180 50 M84 300 L216 300' },
+      short: { d: 'M120 70 L100 78 L66 102 L82 150 L96 140 L96 290 L204 290 L204 140 L218 150 L234 102 L200 78 L180 70 C172 82 160 86 150 86 C140 86 128 82 120 70 Z', x: 'M150 86 L150 150 M96 270 L204 270' },
+      fold: { d: 'M50 120 H250 V260 H50 Z M200 260 L236 340 L170 340 L156 260 Z', x: 'M50 138 H250 M50 242 H250 M170 340 L200 260' },
+      frock: { d: 'M122 60 L104 70 L84 100 L100 124 L108 116 L110 160 L70 300 L230 300 L190 160 L192 116 L200 124 L216 100 L196 70 L178 60 C170 72 160 76 150 76 C140 76 130 72 122 60 Z', x: 'M110 160 H190 M76 280 H224' },
+      cushion: { d: 'M70 110 Q150 96 230 110 Q244 190 230 270 Q150 284 70 270 Q56 190 70 110 Z', x: 'M84 124 Q150 114 216 124 Q226 190 216 256 Q150 266 84 256 Q74 190 84 124 Z' },
+      lamp: { d: 'M100 70 L200 70 L230 180 L70 180 Z M136 180 L164 180 C190 220 190 272 170 296 L130 296 C110 272 110 220 136 180 Z M116 296 H184 V310 H116 Z', x: 'M90 100 H210 M78 150 H222' },
+      runner: { d: 'M70 140 L230 140 L270 270 L30 270 Z', x: 'M78 156 L222 156 M40 254 L260 254 M46 270 V290 M70 270 V290 M94 270 V290 M118 270 V290 M142 270 V290 M166 270 V290 M190 270 V290 M214 270 V290 M238 270 V290' },
+      tray: { d: 'M40 210 C40 166 260 166 260 210 C260 254 40 254 40 210 Z', x: 'M62 210 C62 184 238 184 238 210 C238 236 62 236 62 210 Z M30 204 H44 M256 204 H270' },
+      stool: { d: 'M84 112 H216 V128 H84 Z M92 128 H208 L194 300 H106 Z', x: 'M100 180 H200 M103 240 H197' },
+      pot: { d: 'M122 90 H178 V112 C228 140 238 220 208 280 C198 300 102 300 92 280 C62 220 72 140 122 112 Z', x: 'M122 112 H178 M78 200 H222' },
+      kolshi: { d: 'M130 90 H170 V104 C176 110 178 116 172 122 C220 140 244 190 234 240 C226 284 190 310 150 310 C110 310 74 284 66 240 C56 190 80 140 128 122 C122 116 124 110 130 104 Z', x: 'M128 122 H172 M130 104 H170 M68 206 H232 M72 252 H228' },
+      candle2: { d: 'M108 90 C102 98 108 108 116 108 C124 108 130 98 124 90 C120 84 116 76 116 76 C116 76 112 84 108 90 Z M98 116 H134 V250 H98 Z M86 250 H146 V262 H86 Z M184 120 C178 128 184 138 192 138 C200 138 206 128 200 120 C196 114 192 106 192 106 C192 106 188 114 184 120 Z M174 146 H210 V250 H174 Z M162 250 H222 V262 H162 Z M70 262 H238 L246 296 H62 Z', x: 'M98 140 H134 M98 226 H134 M174 170 H210 M174 226 H210' },
+      doll: { d: 'M150 78 C172 78 184 94 184 114 C184 134 172 148 150 148 C128 148 116 134 116 114 C116 94 128 78 150 78 Z M128 148 H172 C200 188 214 248 220 300 H80 C86 248 100 188 128 148 Z M128 168 C110 176 98 196 96 214 M172 168 C190 176 202 196 204 214', x: 'M137 110 h6 M157 110 h6 M144 128 h12 M96 252 H204 M88 280 H212' },
+      basket: { d: 'M60 150 H240 L220 300 C216 312 84 312 80 300 Z M90 150 C90 96 210 96 210 150 L198 150 C198 110 102 110 102 150 Z', x: 'M66 182 H234 M71 214 H229 M75 246 H225 M79 278 H221 M110 150 L104 306 M150 150 V310 M190 150 L196 306' },
+      plates: { d: 'M40 240 C40 208 260 208 260 240 C260 272 40 272 40 240 Z M58 206 C58 180 242 180 242 206 C242 226 58 226 58 206 Z M80 174 C80 154 220 154 220 174 C220 190 80 190 80 174 Z', x: 'M70 240 C70 222 230 222 230 240 C230 258 70 258 70 240 Z M100 174 C100 164 200 164 200 174 C200 182 100 182 100 174 Z' },
+      lantern: { d: 'M128 62 H172 V80 H128 Z M118 80 H182 L176 100 H124 Z M118 100 C94 140 94 220 118 252 H182 C206 220 206 140 182 100 Z M108 252 H192 V292 H108 Z', x: 'M150 26 C118 26 118 62 128 62 M150 26 C182 26 182 62 172 62 M150 150 C160 166 158 182 150 186 C142 182 140 166 150 150 Z M108 272 H192' },
+      jar: { d: 'M96 140 H204 V300 C204 310 96 310 96 300 Z M150 92 C164 110 162 126 150 132 C138 126 136 110 150 92 Z', x: 'M96 168 H204 M96 276 H204 M150 132 V140 M124 200 H176 V244 H124 Z' },
+      frame: { d: 'M58 74 H242 V306 H58 Z', x: 'M76 92 H224 V288 H76 Z M58 74 L76 92 M242 74 L224 92 M58 306 L76 288 M242 306 L224 288' },
+      rings: { d: 'M60 200 C60 172 120 172 120 200 C120 228 60 228 60 200 Z M126 220 C126 192 186 192 186 220 C186 248 126 248 126 220 Z M150 160 C150 132 210 132 210 160 C210 188 150 188 150 160 Z M190 236 C190 208 250 208 250 236 C250 264 190 264 190 236 Z', x: 'M74 200 C74 186 106 186 106 200 C106 214 74 214 74 200 Z M140 220 C140 206 172 206 172 220 C172 234 140 234 140 220 Z M164 160 C164 146 196 146 196 160 C196 174 164 174 164 160 Z M204 236 C204 222 236 222 236 236 C236 250 204 250 204 236 Z' },
+      rug: { d: 'M60 90 H240 V300 H60 Z', x:'M76 106 H224 V284 H76 Z M70 300 V318 M90 300 V318 M110 300 V318 M130 300 V318 M150 300 V318 M170 300 V318 M190 300 V318 M210 300 V318 M230 300 V318' }
+    };
+  }
+  data() {
+    var M = this.motifs(), S = this.shapes();
+    function P(id, name, craft, price, shape, motif, c1, c2, bg, badge, opts) {
+      return { id: id, name: name, craft: craft, price: price, shape: S[shape].d, detail: S[shape].x, motif: M[motif], c1: c1, c2: c2, bg: bg, badge: badge, opts: opts };
+    }
+    var one = ['Add to bag'], wear = ['S', 'M', 'L', 'XL'], free = ['Free size'];
+    return [
+      [P('l1', 'Jamdani Cushion Cover', 'Jamdani weave', 890, 'cushion', 'jam', '#A6261C', '#F2D9A3', '#EDE3D6', 'Bestseller', ['16″', '18″', '20″']),
+       P('l2', 'Ikat-weave Table Lamp', 'Handloom shade · terracotta', 2450, 'lamp', 'stripe', '#2E4A6B', '#E9D7B0', '#E4E1DA', 'New', one),
+       P('l3', 'Shitalpati Floor Mat', 'Woven cane · Sylhet', 3200, 'rug', 'check', '#D9B77A', '#C49A55', '#E9E4DA', '', ['4×6 ft', '5×7 ft']),
+       P('l4', 'Cane Mora Stool', 'Cane & bamboo', 1900, 'stool', 'stitch', '#C98A4A', '#8A5A2A', '#E7E3D7', '', one)],
+      [P('d1', 'Alpona Table Runner', 'Hand-painted cotton', 1150, 'runner', 'butah', '#E3A72F', '#7E2219', '#EDE6DE', 'New', ['6 seat', '8 seat']),
+       P('d2', 'Kantha Placemats, set of 4', 'Kantha · hand-stitched', 1350, 'runner', 'stitch', '#EFE6D2', '#B4473A', '#E6E3DC', '', one),
+       P('d3', 'Painted Mango-wood Tray', 'Hand-painted wood', 1650, 'tray', 'jam', '#1D2440', '#E3A72F', '#E9E2D4', 'Gift pick', one),
+       P('d4', 'Terracotta Vase', 'Terracotta · Bogura', 950, 'pot', 'stripe', '#B5531A', '#E2A27A', '#ECE4DA', '', ['Small', 'Large'])],
+      [P('b1', 'Nakshi Kantha Bedcover', 'Kantha · 6 months of stitching', 6500, 'rug', 'stitch', '#3F4A2E', '#EAD9A0', '#E7E3D7', 'Heirloom', ['Double', 'King']),
+       P('b2', 'Block-print Pillow Covers, pair', 'Block print', 1250, 'cushion', 'butah', '#E7D3A6', '#9C3A1E', '#E9E4DA', '', one),
+       P('b3', 'Bedside Lamp — Indigo', 'Khadi shade', 2150, 'lamp', 'dot', '#2B3554', '#C9C3E0', '#E6E3DC', '', one),
+       P('b4', 'Khadi Throw', 'Khadi · hand-spun', 2400, 'fold', 'stripe', '#8A6A2B', '#E3C27A', '#E8E2D6', 'New', one)],
+      [P('w1', 'Jamdani Saree — Madder', 'Jamdani · Rupganj', 12500, 'fold', 'jam', '#A6261C', '#F2D9A3', '#EDE3D6', 'Festive', free),
+       P('w2', 'Khadi Panjabi — Indigo', 'Khadi · hand-spun', 3450, 'long', 'stripe', '#2B3554', '#55618A', '#E6E3DC', 'New', wear),
+       P('w3', 'Handloom Cotton Kurti', 'Tangail weave', 2650, 'short', 'check', '#2E4A6B', '#4E6A8B', '#E4E1DA', '', wear),
+       P('w4', 'Nakshi Kantha Shawl', 'Kantha · hand-stitched', 5900, 'fold', 'stitch', '#3F4A2E', '#EAD9A0', '#E7E3D7', '', free)]
+    ];
+  }
+  decorData() {
+    var M = this.motifs(), S = this.shapes();
+    function D(id, name, craft, price, mat, shape, motif, c1, c2, bg, zoom, opts) {
+      return { id: id, name: name, craft: craft, price: price, mat: mat, shape: S[shape].d, detail: S[shape].x, motif: M[motif], c1: c1, c2: c2, bg: bg, zoomLabel: zoom, opts: opts || ['Add to bag'] };
+    }
+    return [
+      D('br1', 'Engraved Brass Kolshi', 'Brass · hand-engraved', 4200, 'brass', 'kolshi', 'dot', '#C9A240', '#8A6A1E', '#EAE3D4', 'Engraving detail', ['Small', 'Large']),
+      D('br2', 'Brass Candle Stands, pair', 'Brass · cast & polished', 2600, 'brass', 'candle2', 'stripe', '#D1AA48', '#A9832A', '#E8E2D6', 'Polished finish'),
+      D('br3', 'Painted Hurricane Lantern', 'Tin & glass · hand-painted', 1450, 'brass', 'lantern', 'butah', '#2C6E5A', '#E3A72F', '#E6E3DC', 'Hand-painted motif'),
+      D('cl1', 'Tepa Putul Terracotta Doll', 'Terracotta · potters’ village', 450, 'clay', 'doll', 'stitch', '#B5531A', '#F2D9A3', '#EDE3D6', 'Hand-pressed clay'),
+      D('cl2', 'Sculpted Terracotta Vase', 'Terracotta', 1250, 'clay', 'pot', 'jam', '#A4471B', '#E2A27A', '#ECE4DA', 'Sculpted relief', ['Small', 'Large']),
+      D('cl3', 'Stoneware Dinner Plates, set of 6', 'Stoneware · reactive glaze', 3900, 'clay', 'plates', 'dot', '#3E5B6E', '#8FB0BF', '#E4E1DA', 'Glaze detail'),
+      D('jt1', 'Hogla Storage Basket', 'Hogla grass · hand-woven', 1100, 'fibre', 'basket', 'check', '#C9A46A', '#A9834A', '#E9E4DA', 'Weave detail', ['Medium', 'Large']),
+      D('jt2', 'Jute Floor Rug', 'Jute · hand-braided', 2900, 'fibre', 'rug', 'stripe', '#BFA273', '#8F7445', '#E7E3D7', 'Braid detail', ['3×5 ft', '5×7 ft']),
+      D('wd1', 'Carved Wooden Tray', 'Mahogany · hand-carved', 1800, 'wood', 'tray', 'butah', '#7A4A2A', '#B47A4C', '#E9E2D4', 'Carving detail'),
+      D('wd2', 'Wooden Napkin Rings, set of 4', 'Mango wood · lacquered', 650, 'wood', 'rings', 'stripe', '#A4471B', '#E3A72F', '#ECE6DC', 'Lacquer bands'),
+      D('wl1', 'Nakshi Kantha Wall Frame', 'Kantha · framed embroidery', 3500, 'wall', 'frame', 'stitch', '#1D2440', '#E9D7B0', '#E6E3DC', 'Stitch detail', ['12×16″', '18×24″']),
+      D('wl2', 'Hand-poured Candle Jar', 'Soy wax · clay jar', 690, 'wall', 'jar', 'dot', '#E9DCC0', '#B5531A', '#EDE6DE', 'Clay jar texture', ['Bel', 'Shiuli', 'Vetiver'])
+    ];
+  }
+  add(p, size) {
+    var self = this;
+    var bag = this.state.bag.concat([{ key: Date.now() + Math.random(), name: p.name, size: size, price: p.price, tone: p.c1 }]);
+    clearTimeout(this._t);
+    this.setState({ bag: bag, bump: this.state.bump + 1, toast: 'Added ' + p.name + ' · ' + size });
+    this._t = setTimeout(function () { self.setState({ toast: '' }); }, 2600);
+  }
+  renderVals() {
+    var self = this, s = this.state, M = this.motifs(), S = this.shapes();
+    var accent = this.props.accent ?? '#A6261C';
+    var motion = this.props.motion ?? true;
+
+    var slideDefs = [
+      { id: 'a', tab: 'Living Edit', kicker: 'Living · নতুন সংগ্রহ', bn: 'ঘর', l1: 'Bring the loom', l2: 'home', copy: 'Jamdani cushions, handloom lamps and cane stools for the room you spend the most time in.', cta: 'Shop the Living Edit', tone: '#1D2440', c1: '#2B3554', c2: '#6D7AA6', c3: '#A6261C', motif: M.stripe, shape: 'cushion', art: 'Jamdani cushion on a handloom stripe' },
+      { id: 'b', tab: 'Festive Wear', kicker: 'Festive Edit · ২০২৬', bn: 'উৎসব', l1: 'Dressed for', l2: 'the gathering', copy: 'Jamdani, silk and hand-embroidered panjabi for the season of family, food and long evenings.', cta: 'Shop festive wear', tone: '#7E2219', c1: '#A6261C', c2: '#F2D9A3', c3: '#EFE6D2', motif: M.jam, shape: 'long', art: 'Embroidered panjabi on a jamdani field' },
+      { id: 'c', tab: 'Dining', kicker: 'Dining · for a full house', bn: 'অতিথি', l1: 'Set the table', l2: 'for guests', copy: 'Alpona runners, kantha placemats and hand-painted trays — the table everyone remembers.', cta: 'Shop dining', tone: '#353E26', c1: '#3F4A2E', c2: '#C9C08F', c3: '#B5531A', motif: M.stitch, shape: 'pot', art: 'Terracotta vase on a running-stitch field' }
+    ];
+    var slides = slideDefs.map(function (d, i) {
+      var on = s.slide === i;
+      return Object.assign({}, d, { on: on, hidden: !on, cls: on ? 'slide on' : 'slide', pcls: on ? 'prog on' : (i < s.slide ? 'prog done' : 'prog'), num: '0' + (i + 1), shape: S[d.shape].d, shapeDetail: S[d.shape].x, artLabel: d.art, go: function () { self.go(i); } });
+    });
+
+    var nav = [
+      { label: 'Best Sellers', color: accent, cols: null },
+      { label: 'Living', color: '#1C1916', tone: '#1D2440', feature: 'Jamdani cushions', cols: [{ title: 'Cushions & pillows', links: ['Cushion covers', 'Floor pillows', 'Lounge pillows', 'Bolsters'] }, { title: 'Lighting', links: ['Table lamps', 'Floor lamps', 'Lampshades', 'Lanterns'] }, { title: 'Furniture & floor', links: ['Mora stools', 'Shitalpati mats', 'Jute rugs', 'Baskets'] }] },
+      { label: 'Bedroom', color: '#1C1916', tone: '#353E26', feature: 'Nakshi kantha bedcovers', cols: [{ title: 'Bed linen', links: ['Kantha bedcovers', 'Pillow covers', 'Throws', 'Quilts'] }, { title: 'Window', links: ['Curtains', 'Tie-backs'] }, { title: 'Little things', links: ['Bedside lamps', 'Tissue box covers', 'Wall hangings'] }] },
+      { label: 'Dining', color: '#1C1916', tone: '#B5531A', feature: 'Alpona runners', cols: [{ title: 'Table linen', links: ['Runners', 'Placemats', 'Table cloths', 'Napkins'] }, { title: 'Serveware', links: ['Trays', 'Trivets', 'Coaster sets', 'Bowls'] }, { title: 'Terracotta', links: ['Vases', 'Planters', 'Tepa putul'] }] },
+      { label: 'Wear', color: '#1C1916', tone: '#7E2219', feature: 'The Festive Edit', cols: [{ title: 'Women', links: ['Saree', 'Salwar kameez', 'Kurti', 'Shawls'] }, { title: 'Men', links: ['Panjabi', 'Fatua', 'Uttorio'] }, { title: 'Kids', links: ['Kids panjabi', 'Frocks', 'Kantha quilts'] }] },
+      { label: 'Crafts & Gifts', color: '#1C1916', tone: '#8A6A2B', feature: 'Gift boxes', cols: [{ title: 'Crafts', links: ['Brass', 'Terracotta', 'Jute', 'Cane & bamboo'] }, { title: 'Gifts', links: ['Under ৳1,000', 'Under ৳3,000', 'Gift boxes'] }, { title: 'Corporate', links: ['Corporate gifting', 'Bulk orders'] }] },
+      { label: 'Collections', color: '#1C1916', cols: null }
+    ].map(function (n) {
+      if (n.cols) n.cols = n.cols.map(function (c, i) { return Object.assign({}, c, { delay: (i * 0.06) + 's' }); });
+      return n;
+    });
+
+    var cats = [
+      { id: 'cu', label: 'Cushions', bn: 'কুশন', motif: M.jam, c1: '#A6261C', c2: '#F2D9A3' },
+      { id: 'lp', label: 'Lamps', bn: 'বাতি', motif: M.stripe, c1: '#1D2440', c2: '#6D7AA6' },
+      { id: 'tl', label: 'Table linen', bn: 'টেবিল সাজ', motif: M.butah, c1: '#E3A72F', c2: '#7E2219' },
+      { id: 'rg', label: 'Rugs & mats', bn: 'পাটি', motif: M.check, c1: '#D9B77A', c2: '#C49A55' },
+      { id: 'wr', label: 'Saree & Panjabi', bn: 'পোশাক', motif: M.dot, c1: '#7E2219', c2: '#F2D9A3' },
+      { id: 'gf', label: 'Crafts & Gifts', bn: 'উপহার', motif: M.stitch, c1: '#3F4A2E', c2: '#EAD9A0' }
+    ];
+
+    var tabs = ['Living', 'Dining', 'Bedroom', 'Wear'].map(function (l, i) { return { label: l, on: s.tab === i, cls: s.tab === i ? 'tab on' : 'tab', pick: function () { self.setState({ tab: i }); } }; });
+    var products = this.data()[s.tab].map(function (p, i) {
+      var sizes = p.opts;
+      var w = !!s.wish[p.id];
+      return Object.assign({}, p, {
+        delay: (i * 0.08) + 's', priceLabel: self.fmt(p.price), wished: w, heartCls: w ? 'heart on' : 'heart', heartFill: w ? 'currentColor' : 'none',
+        wish: function () { var x = Object.assign({}, self.state.wish); x[p.id] = !x[p.id]; self.setState({ wish: x }); },
+        sizes: sizes.map(function (z) { return { label: z, add: function () { self.add(p, z === 'Add to bag' ? '1 pc' : z); } }; })
+      });
+    });
+
+    var allDecor = this.decorData();
+    var matDefs = [['all', 'All décor', ''], ['brass', 'Brass & metal', '#8A6A1E'], ['clay', 'Clay & ceramic', '#A4471B'], ['fibre', 'Jute & hogla', '#6E5422'], ['wood', 'Wood', '#5A3A22'], ['wall', 'Wall & candles', '#1D2440']];
+    var matTone = {}, matName = {};
+    matDefs.forEach(function (d) { matTone[d[0]] = d[2]; matName[d[0]] = d[1]; });
+    var mats = matDefs.map(function (d) {
+      var on = s.mat === d[0];
+      return { label: d[1], on: on, cls: on ? 'fchip on' : 'fchip', n: d[0] === 'all' ? allDecor.length : allDecor.filter(function (p) { return p.mat === d[0]; }).length,
+        pick: function () { if (self.state.mat !== d[0]) self.setState({ mat: d[0], matTurn: self.state.matTurn + 1 }); } };
+    });
+    var decor = allDecor.filter(function (p) { return s.mat === 'all' || p.mat === s.mat; }).map(function (p, i) {
+      var w = !!s.wish[p.id];
+      return Object.assign({}, p, {
+        cardCls: s.matTurn % 2 ? 'pc swB' : 'pc swA', delay: (i * 0.06) + 's', priceLabel: self.fmt(p.price),
+        matLabel: matName[p.mat], matTone: matTone[p.mat],
+        wished: w, heartCls: w ? 'heart on' : 'heart', heartFill: w ? 'currentColor' : 'none',
+        wish: function () { var x = Object.assign({}, self.state.wish); x[p.id] = !x[p.id]; self.setState({ wish: x }); },
+        sizes: p.opts.map(function (z) { return { label: z, add: function () { self.add(p, z === 'Add to bag' ? '1 pc' : z); } }; })
+      });
+    });
+
+    var warps = [], wefts = [], cells = [];
+    for (var i = 0; i < 20; i++) {
+      warps.push({ x: 30 + i * 20, d: (i * 0.05).toFixed(2) + 's' });
+      wefts.push({ y: 30 + i * 20, d: (1.2 + i * 0.09).toFixed(2) + 's' });
+    }
+    var rings = { 0: '#A6261C', 3: '#E3A72F', 6: '#F5F1EA', 9: '#E3A72F' };
+    for (var a = 0; a < 19; a++) {
+      for (var b = 0; b < 19; b++) {
+        var r = Math.abs(a - 9) + Math.abs(b - 9);
+        if (rings[r] && (r % 3 === 0) && ((a + b) % 2 === 0 || r === 0)) {
+          var cx = 40 + a * 20, cy = 40 + b * 20;
+          cells.push({ x: cx - 7, y: cy - 7, cx: cx, cy: cy, f: rings[r], d: (3.2 + r * 0.14 + (a % 3) * 0.03).toFixed(2) + 's' });
+        }
+      }
+    }
+
+    var craftDefs = [
+      { id: 'jm', title: 'Jamdani', bn: 'জামদানি', copy: 'Supplementary-weft motifs woven by hand into fine cotton — now on cushions and runners as well as sarees.', range: 'Sarees · Cushion covers · Runners', c1: '#7E2219', c2: '#F2D9A3', motif: M.jam },
+      { id: 'nk', title: 'Nakshi Kantha', bn: 'নকশিকাঁথা', copy: 'Layers of soft cotton quilted with running stitch, with stories embroidered across the surface.', range: 'Bedcovers · Placemats · Shawls', c1: '#1D2440', c2: '#E9D7B0', motif: M.stitch },
+      { id: 'al', title: 'Alpona', bn: 'আলপনা', copy: 'The festival floor-painting tradition, brushed by hand onto trays, runners and wall panels.', range: 'Trays · Runners · Wall panels', c1: '#353E26', c2: '#C9C08F', motif: M.butah },
+      { id: 'sp', title: 'Shitalpati', bn: 'শীতলপাটি', copy: 'Cool woven-cane mats from Sylhet, made for hot floors and long afternoons.', range: 'Floor mats · Coasters · Baskets', c1: '#6E5422', c2: '#E3C27A', motif: M.check }
+    ];
+    var spotDefs = [
+      { id: 'cush', x: 490, y: 340, name: 'Jamdani Cushion Cover', craft: 'Jamdani weave', price: 890, c1: '#A6261C' },
+      { id: 'art', x: 665, y: 145, name: 'Alpona Wall Panel', craft: 'Hand-painted wood', price: 3800, c1: '#E3A72F' },
+      { id: 'lamp', x: 1115, y: 222, name: 'Ikat-weave Table Lamp', craft: 'Handloom shade · terracotta', price: 2450, c1: '#2E4A6B' },
+      { id: 'rug', x: 700, y: 580, name: 'Shitalpati Floor Mat', craft: 'Woven cane · Sylhet', price: 3200, c1: '#D9B77A' },
+      { id: 'stool', x: 210, y: 455, name: 'Cane Mora Stool', craft: 'Cane & bamboo', price: 1900, c1: '#C98A4A' },
+      { id: 'pot', x: 115, y: 410, name: 'Terracotta Planter', craft: 'Terracotta · Bogura', price: 750, c1: '#B5531A' }
+    ];
+    var spots = spotDefs.map(function (d) { var on = s.spot === d.id; return Object.assign({}, d, { on: on, cls: on ? 'spot on' : 'spot', pick: function () { self.setState({ spot: on ? '' : d.id }); } }); });
+    var cur = spotDefs.filter(function (d) { return d.id === s.spot; })[0];
+    var rp = cur ? Object.assign({}, cur, {
+      priceLabel: self.fmt(cur.price),
+      left: cur.x > 900 ? cur.x - 320 : cur.x + 30,
+      top: Math.max(16, Math.min(cur.y - 70, 480)),
+      add: function () { self.add(cur, '1 pc'); }
+    }) : false;
+    var roomTotal = spotDefs.reduce(function (t, d) { return t + d.price; }, 0);
+    var crafts = craftDefs.map(function (k, i) { return Object.assign({}, k, { num: '0' + (i + 1), cls: s.craft === i ? 'pn on' : 'pn', pick: function () { if (self.state.craft !== i) self.setState({ craft: i }); } }); });
+
+    var bagItems = s.bag.map(function (b) { return Object.assign({}, b, { priceLabel: self.fmt(b.price), remove: function () { self.setState({ bag: self.state.bag.filter(function (x) { return x.key !== b.key; }) }); } }); });
+    var wishCount = Object.keys(s.wish).filter(function (k) { return s.wish[k]; }).length;
+
+    return {
+      accent: accent, motionCls: motion ? '' : 'still',
+      heroTone: slideDefs[s.slide].tone, slides: slides,
+      next: function () { self.go((self.state.slide + 1) % 3); },
+      prev: function () { self.go((self.state.slide + 2) % 3); },
+      nav: nav, cats: cats, tabs: tabs, tabX: (s.tab * 120) + 'px', products: products,
+      warps: warps, wefts: wefts, cells: cells, crafts: crafts,
+      spots: spots, rp: rp, roomTotal: self.fmt(roomTotal),
+      mats: mats, decor: decor,
+      closeSpot: function () { self.setState({ spot: '' }); },
+      addRoom: function () {
+        var bag = self.state.bag.concat(spotDefs.map(function (d, i) { return { key: Date.now() + i + Math.random(), name: d.name, size: '1 pc', price: d.price, tone: d.c1 }; }));
+        clearTimeout(self._t);
+        self.setState({ bag: bag, bump: self.state.bump + 1, toast: 'Added the whole room · ' + spotDefs.length + ' pieces' });
+        self._t = setTimeout(function () { self.setState({ toast: '' }); }, 2600);
+      },
+      wishCount: wishCount,
+      bagCount: s.bag.length, bagItems: bagItems, bagEmpty: s.bag.length === 0,
+      subtotal: self.fmt(s.bag.reduce(function (t, b) { return t + b.price; }, 0)),
+      bumpCls: s.bump === 0 ? '' : (s.bump % 2 ? 'bA' : 'bB'),
+      bagOpen: s.bagOpen,
+      openBag: function () { clearTimeout(self._t); self.setState({ bagOpen: true, toast: '' }); },
+      closeBag: function () { self.setState({ bagOpen: false }); },
+      toast: s.toast,
+      joined: s.joined, notJoined: !s.joined,
+      join: function (e) { if (e && e.preventDefault) e.preventDefault(); self.setState({ joined: true }); }
+    };
+  }
+}
+</script>
+</body>
+</html>
